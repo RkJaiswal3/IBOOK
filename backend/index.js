@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express')
 const connectToMongo = require('./db');
 var cors = require('cors')
 
 connectToMongo();
-const app = express();  
-const port = 5000
+const app = express();
+const port = process.env.PORT;
 
 app.use(cors())
 app.use(express.json()) //now we can use this middleware to do or send request into body
