@@ -4,6 +4,7 @@ const connectToMongo = require('./db');
 var cors = require('cors')
 
 connectToMongo();
+
 const app = express();
 const port = process.env.PORT;
 
@@ -19,6 +20,4 @@ app.use('/api/notes', require('./routes/notes'))
 
 app.listen(port, () => {
     console.log(`iBook Backend app listening on port http://localhost:${port}`)
-
 });
-

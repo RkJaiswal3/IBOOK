@@ -2,7 +2,7 @@ import NoteContext from "./noteContext";
 import React, { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000";
+  const host = "http://localhost:52501";
   const initialNotes = [];
 
   const [notes, setNotes] = useState(initialNotes);
@@ -36,7 +36,6 @@ const NoteState = (props) => {
         },
         body: JSON.stringify({ title, description, tag }),
       });
-
       const json = await response.json();
       // console.log(json);
 
@@ -59,7 +58,7 @@ const NoteState = (props) => {
   // Delete a note
   const deleteNote = async (id) => {
     try {
-       await fetch(`${host}/api/notes/deleteNotes/${id}`, {
+      await fetch(`${host}/api/notes/deleteNotes/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +79,7 @@ const NoteState = (props) => {
   // Edit a note
   const editNote = async (id, title, description, tag) => {
     try {
-        await fetch(`${host}/api/notes/updateNotes/${id}`, {
+      await fetch(`${host}/api/notes/updateNotes/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +102,7 @@ const NoteState = (props) => {
   };
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes}}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </NoteContext.Provider>
   );

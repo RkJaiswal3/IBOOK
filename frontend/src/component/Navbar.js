@@ -10,13 +10,14 @@ export const Navbar = () => {
     // console.log(location.pathname)
   }, [location]);
 
-  const handleLogout = () =>{
-
+  const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate("/login");
+    navigate("/");
   }
+
+
   return (
-    
+
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
@@ -25,7 +26,7 @@ export const Navbar = () => {
           </Link>
           <button
             className="navbar-toggler"
-            type="button" 
+            type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
@@ -37,26 +38,26 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">
+                <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} to="/about">
+                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">
                   About Us
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/contact"? "active": ""}`} to="/contact">
+                <Link className={`nav-link ${location.pathname === "/contact" ? "active" : ""}`} to="/contact">
                   Contact
                 </Link>
               </li>
             </ul>
-            {!localStorage.getItem('token') ? 
-            <form className="d-flex">
-              <Link className="btn btn-primary" to="/login" role="button">Login</Link>
-              <Link className="btn btn-primary mx-2" to="/SignUp" role="button">Sign Up</Link>
-            </form> : <button className="btn btn-primary" onClick={handleLogout} role="button">Logout</button> }
+            {!localStorage.getItem('token') ?
+              <form className="d-flex">
+                <Link className="btn btn-primary" to="/login" role="button">Login</Link>
+                <Link className="btn btn-primary mx-2" to="/SignUp" role="button">Sign Up</Link>
+              </form> : <button className="btn btn-primary" onClick={handleLogout} role="button">Logout</button>}
           </div>
         </div>
       </nav>

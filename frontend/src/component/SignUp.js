@@ -1,36 +1,36 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export const SignUp = (props) => {
 
-  const {showAlert} = props;
+  const { showAlert } = props;
 
-  const [credential, setCredential] = useState({name: "",  email: "",password: "", cpassword: "" })
+  const [credential, setCredential] = useState({ name: "", email: "", password: "", cpassword: "" })
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     //submit code
     e.preventDefault();
-    const {name, email, password} = credential;
-    const userResponse = await fetch("http://localhost:5000/api/auth/createUser", {
+    const { name, email, password } = credential;
+    const userResponse = await fetch("http://localhost:52501/api/auth/createUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({name, email, password}),
+      body: JSON.stringify({ name, email, password }),
 
     });
 
     const json = await userResponse.json();
-    console.log(json)
-      //saved the auth token and redirect
-    if(json.success){
+    // console.log(json)
+    //saved the auth token and redirect
+    if (json.success) {
       localStorage.setItem('token', json.authtoken)
       navigate("/login");
-      showAlert("You have created the account !", "success");    
-    }else{
+      showAlert("You have created the account !", "success");
+    } else {
       showAlert("Invalid Credential", "danger");
-    } 
+    }
 
 
   }
@@ -41,7 +41,7 @@ export const SignUp = (props) => {
 
   return (
     <div>
-       <h2>Sign Up to Continue iBook</h2><br />
+      <h2>Sign Up to Continue iBook</h2><br />
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
@@ -54,11 +54,11 @@ export const SignUp = (props) => {
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" className="form-control" id="password" name="password" minLength={5} onChange={onchange} required/>
+          <input type="password" className="form-control" id="password" name="password" minLength={5} onChange={onchange} required />
         </div>
         <div className="mb-3">
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="cpassword" name="cpassword" minLength={5} onChange={onchange} required/>
+          <input type="password" className="form-control" id="cpassword" name="cpassword" minLength={5} onChange={onchange} required />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>

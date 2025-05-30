@@ -5,7 +5,7 @@ import { Home } from './component/Home';
 import { About } from './component/About';
 import { Contact } from "./component/Contact";
 import NoteState from "./context/Notes/NoteState";
-import  Alert  from "./component/Alert";
+import Alert from "./component/Alert";
 import { Login } from "./component/Login";
 import { SignUp } from "./component/SignUp";
 import { useState } from "react";
@@ -14,21 +14,21 @@ import { useState } from "react";
 
 function App() {
   const [alert, setAlert] = useState(null)
-  const showAlert = (message, type)=>{
-      setAlert({
-        msg: message,
-        type: type
-      })
-      setTimeout(() => {
-        setAlert(null);
-      }, 2000);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
   }
   return (
     <>
       <NoteState>
         <Router>
           <Navbar />
-          <Alert alertshow={alert}/>
+          <Alert alertshow={alert} />
           <div className="container my-3">
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert} />} />
