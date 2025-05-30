@@ -22,7 +22,7 @@ export const Login = (props) => {
         });
 
         const json = await userResponse.json();
-        console.log(json)
+
         if (json.success === true) {
             //saved the auth token and redirect
             localStorage.setItem('token', json.authToken)
