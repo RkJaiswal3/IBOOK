@@ -1,11 +1,11 @@
 const express = require('express');
-const User = require('../models/Users');
+const User = require('../models/User');
 const { body, validationResult } = require('express-validator');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const JWT_SECRET = "fksdkfj";
 const jwt = require('jsonwebtoken');
-const fetchuser = require('../middleware/fetchuser');
+const fetchuser = require('../middleware/fetchUser');
 
 //creat a user using post: "/api/auth/createUser". Doesn't use require auth
 //Route 1 
@@ -107,7 +107,7 @@ router.post('/login', [
 router.post('/getuser', fetchuser, async (req, res) => {
   try {
     userId = req.user.id;
-    const user = await User.findById(userId).select('-password');
+    const user = await user.findById(userId).select('-password');
     res.json(user);
   } catch (error) {
     console.error(error.message);
