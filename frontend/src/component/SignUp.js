@@ -12,7 +12,7 @@ export const SignUp = (props) => {
     //submit code
     e.preventDefault();
     const { name, email, password } = credential;
-    const userResponse = await fetch("http://localhost:52501/api/auth/createUser", {
+    const userResponse = await fetch("https://ibook-ga9u.onrender.com/api/auth/createUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
